@@ -13,7 +13,7 @@ export interface Pokemon {
 export async function fetchPokemonFromAPI() {
 	const pokemonList: Pokemon[] = [];
 	try {
-		for (let id = 1; id <= 2; id++) {
+		for (let id = 1; id <= 151; id++) {
 			const response = await fetch(
 				`https://pokeapi.co/api/v2/pokemon/${id}/`
 			);
@@ -64,7 +64,6 @@ export async function fetchOnePokemonFromDB(pokemonId: number) {
 
 export async function fetchRandomPokemonFromDB() {
 	const randomPokemonIds = generateRandomPokemonIds();
-	//   console.log(randomPokemonIds);
 
 	try {
 		const { data: pokemonList } = await supabase

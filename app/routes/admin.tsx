@@ -174,7 +174,7 @@ export function ActionResultModal({
 							<p className="mt-2 text-sm/6 text-[#a9a9a9]">
 								{success
 									? `Your API action has completed successfully. You fetched or deleted ${pokemonCount} pokemon`
-									: "Your API action has failed, possible PokeAPI issue"}
+									: "Your API action has failed, insufficient permissions"}
 							</p>
 							<div className="mt-4">
 								<Button

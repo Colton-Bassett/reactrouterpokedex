@@ -23,7 +23,7 @@ export default function HelpPage() {
         <div className="min-w-full flex-col items-center justify-center px-8 pb-20 pt-12 text-[rgba(255,255,245,0.86)] sm:px-12">
           <p className="mb-8">
             This website displays 12 randomly selected Gen 1 Pokémon from a list
-            of 151. Data is fetched from PokéAPI and stored in a PostgreSQL
+            of 151. Data is fetched from PokéAPI and stored in a PostgREST
             database. Users can refresh the list by clicking the{" "}
             <code className="rounded-sm border border-[#2e2e32] bg-[rgba(101,117,133,.16)] px-1 py-1 text-sm text-[#a8b1ff]">
               Load more
@@ -38,9 +38,9 @@ export default function HelpPage() {
             queries and a seamless user experience.
           </p>
           <p className="mb-8">
-            An admin page is also available, which requires basic
-            authentication. This page allows for managing Pokémon data,
-            including adding, saving, and deleting entries via raw SQL queries.
+            An admin page is also available, which allows authorized users to
+            execute server actions for managing Pokémon data. These actions
+            include adding, saving, and deleting entries.
           </p>
         </div>
       </div>

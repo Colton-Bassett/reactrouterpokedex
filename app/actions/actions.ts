@@ -13,7 +13,7 @@ export interface Pokemon {
 export async function fetchPokemonFromAPI() {
 	const pokemonList: Pokemon[] = [];
 	try {
-		for (let id = 1; id <= 151; id++) {
+		for (let id = 1; id <= 2; id++) {
 			const response = await fetch(
 				`https://pokeapi.co/api/v2/pokemon/${id}/`
 			);
@@ -121,32 +121,51 @@ export async function savePokemonToDB(pokemonList: Pokemon[]) {
 }
 
 export async function fetchAndSavePokemonToDB() {
-	try {
-		const { success, pokemonList } = await fetchPokemonFromAPI();
+	const serviceRoleKeyCheck = import.meta.env
+		.VITE_PRIVATE_SUPABASE_SERVICE_ROLE_KEY;
 
-		if (pokemonList && pokemonList.length > 0) {
-			await savePokemonToDB(pokemonList);
-		} else {
+	if (serviceRoleKeyCheck) {
+		try {
+			const { success, pokemonList } = await fetchPokemonFromAPI();
+
+			if (pokemonList && pokemonList.length > 0) {
+				await savePokemonToDB(pokemonList);
+			} else {
+				return { success: false, pokemonCount: 0 };
+			}
+			// const pokemonList: Pokemon[] = await Promise.reject(
+			//   new Error("Forced error for testing"),
+			// );
+			return { success: true, pokemonCount: pokemonList?.length };
+		} catch (error) {
+			console.error(
+				"Error fetching and saving all pokemon to DB:",
+				error
+			);
 			return { success: false, pokemonCount: 0 };
 		}
-		// const pokemonList: Pokemon[] = await Promise.reject(
-		//   new Error("Forced error for testing"),
-		// );
-		return { success: true, pokemonCount: pokemonList?.length };
-	} catch (error) {
-		console.error("Error fetching and saving all pokemon to DB:", error);
+	} else {
+		console.error("Error fetching and saving all pokemon to DB");
 		return { success: false, pokemonCount: 0 };
 	}
 }
 
 export async function deleteAllPokemonFromDB() {
-	try {
-		await supabase.from("routerpokedex").delete().neq("id", 0);
+	const serviceRoleKeyCheck = import.meta.env
+		.VITE_PRIVATE_SUPABASE_SERVICE_ROLE_KEY;
 
-		// await Promise.reject(new Error("Forced error for testing"));
-		return { success: true, pokemonCount: 151 };
-	} catch (error) {
-		console.error("Error deleting all pokemon from DB:", error);
+	if (serviceRoleKeyCheck) {
+		try {
+			await supabase.from("routerpokedex").delete().neq("id", 0);
+
+			// await Promise.reject(new Error("Forced error for testing"));
+			return { success: true, pokemonCount: 151 };
+		} catch (error) {
+			console.error("Error deleting all pokemon from DB:", error);
+			return { success: false, pokemonCount: 0 };
+		}
+	} else {
+		console.error("Error deleting all pokemon from DB");
 		return { success: false, pokemonCount: 0 };
 	}
 }

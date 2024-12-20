@@ -4,7 +4,7 @@
 
 html,
 body {
-	/* @apply bg-white dark:bg-gray-950;
+  /* @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -12,52 +12,52 @@ body {
 }
 
 body {
-	@apply bg-[#1b1b1f];
-	color: rgba(255, 255, 245, 0.86);
+  @apply bg-[#1b1b1f];
+  color: rgba(255, 255, 245, 0.86);
 }
 
 .pokemonCard::before {
-	content: "";
-	position: absolute;
-	top: 10%;
-	left: 10%;
-	right: 10%;
-	bottom: 10%;
-	background-color: #646cff;
-	filter: blur(18px);
-	z-index: -1;
-	opacity: 0;
-	will-change: opacity;
-	transition: opacity 0.4s ease;
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  background-color: #646cff;
+  filter: blur(18px);
+  z-index: -1;
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 0.4s ease;
 }
 
 .pokemonCard:hover::before {
-	opacity: 1;
+  opacity: 1;
 }
 
 .heroBg {
-	position: absolute;
-	max-height: 100%;
-	top: 15%;
-	left: 0;
-	right: 0;
-	bottom: -60%;
-	width: 100%;
-	z-index: -1;
+  position: absolute;
+  max-height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -60%;
+  width: 100%;
+  z-index: -1;
 
-	opacity: 0.7;
-	background: radial-gradient(
-		circle at right center,
-		#4b296980,
-		#563277 25%,
-		#4a378c 40%,
-		#4066a8 65%,
-		#32517380
-	);
-	mask-image: radial-gradient(
-		ellipse 150% 30% at center center,
-		#000 20%,
-		#00000080 50%,
-		#0000
-	);
+  opacity: 0.7;
+  background: radial-gradient(
+    circle at right center,
+    #4b296980,
+    #563277 25%,
+    #4a378c 40%,
+    #4066a8 65%,
+    #32517380
+  );
+  mask-image: radial-gradient(
+    ellipse 150% 30% at center center,
+    #000 20%,
+    #00000080 50%,
+    #0000
+  );
 }
